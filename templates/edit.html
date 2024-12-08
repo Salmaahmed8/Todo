@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Task</title>
+    <style>
+        /* Same CSS as index.html */
+        body { 
+            font-family:  "Brush Script MT", cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #d6cbd3; 
+            line-height: 1.6; 
+            color: #333; 
+        }
+
+        .container { 
+            width: 80%; 
+            max-width: 800px; 
+            margin: 40px auto; 
+            background: #ffffff; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); 
+            transition: all 0.3s ease; 
+        }
+
+        h1 {
+            font-size: 1.8rem; 
+            color: #555; 
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+
+        input[type="text"], 
+        input[type="date"], 
+        select {
+            width: 18%; 
+            padding: 8px 10px; 
+            margin-right: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            font-size: 1rem; 
+        }
+
+        button { 
+            padding: 8px 16px; 
+            margin: 0 5px; 
+            background-color: #DC143C; 
+            color: #fff; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease; 
+        }
+
+        button:hover {
+            background-color: #F08080; 
+        }
+
+        a { 
+            color: #DC143C; 
+            text-decoration: none; 
+            font-size: 3rem; 
+        }
+
+        a:hover { 
+            text-decoration: underline; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Task</h1>
+        <form method="POST">
+            <input type="text" name="task_name" value="{{ task.name }}" required>
+            <input type="date" name="due_date" value="{{ task.due_date.strftime('%Y-%m-%d') }}" required>
+            <select name="priority" required>
+                <option value="High" {% if task.priority == 'High' %}selected{% endif %}>High</option>
+                <option value="Medium" {% if task.priority == 'Medium' %}selected{% endif %}>Medium</option>
+                <option value="Low" {% if task.priority == 'Low' %}selected{% endif %}>Low</option>
+            </select>
+            <button type="submit">Update Task</button>
+            <a href="{{ url_for('index') }}">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
