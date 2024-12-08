@@ -1,6 +1,4 @@
-# Python script to generate the README.md file
-
-content = """# To-Do List Application
+# To-Do List Application
 
 ## Overview
 A simple and functional To-Do List Application built using Flask. This application allows users to manage their tasks effectively with features like adding, editing, deleting, priority categorization, and due date tracking. The interface is styled with custom CSS for a responsive and user-friendly experience.
