@@ -52,7 +52,7 @@ def index():
 
     # Fetch all tasks, sorted by priority and due date
     tasks = Task.query.order_by(
-        db.case(
+        db.case(./index.html
             (Task.priority == 'High', 1),
             (Task.priority == 'Medium', 2),
             (Task.priority == 'Low', 3)
