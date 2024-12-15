@@ -57,16 +57,10 @@ def index():
 
         return redirect(url_for('index'))
 
-    # Fetch all tasks, sorted by priority and due date
-    tasks = Task.query.order_by(
-        db.case(
-            (Task.priority == 'High', 1),
-            (Task.priority == 'Medium', 2),
-            (Task.priority == 'Low', 3)
-        ),
-        Task.due_date
-    ).all()
-    
+    # Sort tasks: Priority (High -> Medium -> Low) then due_date
+    priority_order = {"High": 1, "Medium": 2, "Low": 3}
+    tasks.sort(key=lambda t: (priority_order.get(t["priority"], 4), t["due_date"]))
+
     return render_template('index.html', tasks=tasks)
 
 
