@@ -99,6 +99,7 @@
     <div class="container">
         <h1>Todo List</h1>
 
+        <!-- Flash messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -109,7 +110,8 @@
             {% endif %}
         {% endwith %}
 
-        <form method="POST">
+        <!-- Add Task Form -->
+        <form method="POST" action="{{ url_for('index') }}">
             <input type="text" name="task_name" placeholder="Enter Task Name" required>
             <input type="date" name="due_date" required>
             <select name="priority" required>
@@ -121,12 +123,13 @@
             <button type="submit">Add Task</button>
         </form>
 
+        <!-- Task List -->
         {% if tasks %}
             {% for task in tasks %}
             <div class="task">
                 <div class="task-details">
                     <span>{{ task.name }}</span>
-                    <span>{{ task.due_date.strftime('%Y-%m-%d') }}</span>
+                    <span>{{ task.due_date }}</span>
                     <span class="priority-{{ task.priority.lower() }}">{{ task.priority }}</span>
                 </div>
                 <div class="task-actions">
